@@ -7,7 +7,7 @@ import sdata from './sdata';
 
 const ncard = (val) => {
     return(
-        <Card imgsrc={val.img} title={val.title} sName={val.sName} sLink={val.sLink}/>
+        <Card key={val.id} imgsrc={val.img} title={val.title} sName={val.sName} sLink={val.sLink}/>
     )
 } 
 
