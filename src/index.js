@@ -1,29 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import './index.css';
+import Card from "./Card"
+import sdata from './sdata';
+ import './index.css';
+// import App from './App';
 
-let currDate = new Date(2021, 4, 17, 7);
-currDate = currDate.getHours();
-let greeting = '';
-let cssStyle = {}
+const ncard = (val) => {
+    return(
+        <Card imgsrc={val.img} title={val.title} sName={val.sName} sLink={val.sLink}/>
+    )
+} 
 
-if( currDate >= 1 && currDate < 12){
-    greeting = 'Good Morning';
-    cssStyle.color = 'green';
-}else if(currDate >= 12 && currDate < 19){
-    greeting = 'Good Afternoon';
-    cssStyle.color = 'orange';
-}else{
-    greeting = 'Good Night';
-    cssStyle.color = 'black';
-}
 
-ReactDOM.render(
+
+
+ReactDOM.render( 
     <>
-       <div>
-          <h1>Hello Mam, <span style={cssStyle}>{greeting}</span></h1>
-       </div>
-        
+      <h1 className="heading_style">Top 5 Series</h1>
+      
+      {sdata.map(ncard)}
     </>,
     document.getElementById('root')
 )
