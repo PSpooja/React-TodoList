@@ -1,25 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import Card from "./Card"
-import sdata from './sdata';
+import ReactDOM from 'react-dom';
+
  import './index.css';
-// import App from './App';
-
-const ncard = (val) => {
-    return(
-        <Card key={val.id} imgsrc={val.img} title={val.title} sName={val.sName} sLink={val.sLink}/>
-    )
-} 
-
+ import App from './App';
 
 
 
 ReactDOM.render( 
-    <>
-      <h1 className="heading_style">Top 5 Series</h1>
-      
-      {sdata.map(ncard)}
-    </>,
+    <App />,
     document.getElementById('root')
 )
 
