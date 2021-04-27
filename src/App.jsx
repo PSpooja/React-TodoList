@@ -1,24 +1,61 @@
 import React, { useState } from 'react';
+import ToDolist from './ToDolist';
 
-const currTime = new Date().toLocaleTimeString();
 
 const App = () => {
-    const [time, setTime] = useState(currTime);
-    console.log(time);
 
-    const ChangeTime = () => {
-        setTime(new Date().toLocaleTimeString());
-    }
+ const [inputstate, setInputstate] = useState('');
+ const [items, setItems] = useState([]);
+   
+ const EventList = (event) => {
+    setInputstate(event.target.value)
+ }
 
-    setInterval(ChangeTime, 1000);
+ const ShowToDoList = () => {
+    setItems( (preVal) => {
+        return [...preVal, inputstate]
+    });
+    setInputstate("")
+ }
 
-    return(
-        <>
-            <h1 className="heading_style">{time}</h1>
-            {/* <button onClick={ChangeTime}>Click Me </button> */}
-        </>
-        
-    )
+ const deleteItems = (id) => {
+     console.log("deleted");
+     
+     setItems((preVal) => {
+         return preVal.filter((arrItem, index) => {
+            return index !== id;
+         })
+     })
+ }
+
+   return(
+       <>
+           <div className="main_div">
+               <div className="center_div">
+                  <br />
+                  <h1>TO DO LIST</h1>
+                  <br />
+                   <input type="text" placeholder="Enter a item" 
+                   value= {inputstate}
+                   onChange={EventList}/>
+                   <button onClick={ShowToDoList}> + </button>
+
+                   <ol>
+                       {/* <li>{inputstate}</li> */}
+                       {/* {<div className="todo_style"> <i class="fas fa-times" aria-hidden="true"></i> <li>{itemVal}</li> </div>} */}
+
+                       {items.map((itemVal, index) => {
+                           return <ToDolist key={index} 
+                           id={index}
+                           text={itemVal}
+                           onSelect={deleteItems}></ToDolist>
+                       })}
+
+                   </ol>
+               </div>
+           </div>
+       </>
+   )
 }
 
 export default App;
